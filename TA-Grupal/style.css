@@ -1,0 +1,201 @@
+:root {
+  --column-background: lightyellow;
+  --outline-color: black;
+  --column-hover-background: lightgoldenrodyellow;
+  --column-hover-shadow: rgba(0, 0, 0, 0.2);
+}
+
+.theme-dark {
+  --column-background: hsl(0, 0%, 20%);
+  --outline-color: white;
+  body {
+    background: linear-gradient(135deg, #000000, #434343);
+  }
+  .card {
+    background-color: hsl(0, 0%, 10%);
+    box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.3);
+  }
+}
+
+body {
+  font-family: Ubuntu, sans-serif;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #6a0572, #003b73);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.modal-card {
+  width: 90%;
+  height: 90%;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.custom-column {
+  display: inline-flex;
+  flex-direction: column;
+  background-color: var(--column-background);
+  max-height: 400px;
+  width: 90%;
+  padding: 10px;
+  margin: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: var(--outline-color);
+  position: relative;
+  transition: border-color 0.3s ease, border-width 0.3s ease, background-color 0.3s ease;
+}
+
+.custom-column.drag-over {
+  background-color: var(--column-hover-background);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-width: 2px;
+  border-style: dashed;
+  cursor: copy;
+}
+
+.custom-column:hover {
+  background-color: var(--column-hover-background);
+  box-shadow: 0px 8px 16px var(--column-hover-shadow);
+}
+
+.custom-column::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 10%, transparent 80%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.custom-column:hover::before {
+  opacity: 1;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+  background-color: slateblue;
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  cursor: grab;
+}
+
+.card.dragging {
+  opacity: 0.7;
+  transform: scale(1.05);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5);
+  cursor: grabbing;
+}
+
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+#theme_switcher_btn,
+#add_task_btn {
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  position: fixed;
+  z-index: 9999;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#theme_switcher_btn {
+  background-color: #3498db; 
+  bottom: 80px; 
+  right: 20px; 
+}
+
+#add_task_btn {
+  background-color: #27ae60; 
+  bottom: 20px;
+  right: 20px;
+}
+
+#theme_switcher_btn:hover {
+  background-color: #2980b9; 
+  transform: scale(1.1); 
+}
+
+#add_task_btn:hover {
+  background-color: #218c54;
+  transform: scale(1.1);
+}
+
+#theme_switcher_btn:active,
+#add_task_btn:active {
+  transform: scale(0.9); 
+}
+
+.modal-background {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+@keyframes dragOverAnimation {
+  0% { background-color: var(--column-background); }
+  50% { background-color: var(--column-hover-background); }
+  100% { background-color: var(--column-background); }
+}
+
+@media (min-width: 768px) {
+  .modal-card {
+    width: 80%;
+    height: 80%;
+  }
+
+  .dashboard {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .custom-column {
+    max-height: 400px;
+    width: 230px;
+    margin: 5px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .modal-card {
+    width: 80%;
+    height: 80%;
+  }
+
+  .dashboard {
+    display: block;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    white-space: nowrap;
+    height: 83vh;
+    padding: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: var(--outline-color);
+  }
+
+  .custom-column {
+    max-height: 94%;
+    width: 400px;
+  }
+}

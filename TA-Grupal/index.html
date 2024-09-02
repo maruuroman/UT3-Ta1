@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trello Falso</title>
+
+    <script async src="classes/dashboard.js"></script>
+    <script async src="classes/task.js"></script>
+    <script async src="classes/menu.js"></script>
+    <script async src="script.js"></script>
+
+    <!-- bulma -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
+    />
+
+    <!-- íconos -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <!-- css nuestro -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!--Titulo-->
+    <header
+      class="block is-flex is-justify-content-center is-align-items-center"
+    >
+      <h1 class="title is-1" style="color: white">Gestor de tareas</h1>
+    </header>
+    <div
+      class="block is-flex is-flex-direction-row is-justify-content-flex-end"
+    >
+      <button class="button is-small" id="theme_switcher_btn">
+        <span class="material-symbols-outlined">dark_mode</span>
+      </button>
+      <button class="button is-small" id="add_task_btn">
+        <span class="material-symbols-outlined">add_task</span>
+      </button>
+    </div>
+
+    <!--Columnas-->
+    <!--<div class="columns is-gap-3" id="task-dashboard"></div>-->
+    <div id="task-dashboard"></div>
+
+    <!-- Diálogo para agregar/editar tareas -->
+    <!--TODO: BUSCAR ALGUNA FORMA DE CREARLO CON JS-->
+    <div class="modal" id="task-menu" tabindex="0">
+      <div class="modal-background" id="background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title"></p>
+        </header>
+        <section class="modal-card-body">
+          <form id="task-form">
+            <div class="field">
+              <label class="label">Título</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  id="titulo"
+                  placeholder="Título de la tarea"
+                />
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Descripción</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  id="descripcion"
+                  placeholder="Descripción de la tarea"
+                  maxlength="150"
+                />
+              </div>
+              <p class="help">
+                <span id="char-count">150</span> caracteres máximo.
+              </p>
+            </div>
+            <div class="field">
+              <label class="label">Asignado</label>
+              <div class="control">
+                <div class="select">
+                  <select id="asignado">
+                    <option value="">Asigne una persona</option>
+                    <option value="María">María</option>
+                    <option value="Ezequiel">Ezequiel</option>
+                    <option value="Bruno">Bruno</option>
+                    <option value="German">Germán</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Prioridad</label>
+              <div class="control">
+                <div class="select">
+                  <select id="prioridad">
+                    <option value="">Seleccione una Prioridad</option>
+                    <option value="Baja">Baja</option>
+                    <option value="Media">Media</option>
+                    <option value="Alta">Alta</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Estado</label>
+              <div class="control">
+                <div class="select">
+                  <select name="status" required id="estado">
+                    <option value="">Seleccione un Estado</option>
+                    <option value="backlog">Backlog</option>
+                    <option value="to-do">To-Do</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="blocked">Blocked</option>
+                    <option value="done">Done</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="label">Fecha límite</label>
+              <div class="control">
+                <input class="input" id="fecha_limite" type="date" />
+              </div>
+            </div>
+          </form>
+        </section>
+        <footer class="modal-card-foot">
+          <div class="buttons">
+            <button class="button" id="cancel-button">Cancelar</button>
+            <button class="button is-success" id="save-button">Aceptar</button>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
