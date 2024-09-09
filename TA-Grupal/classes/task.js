@@ -8,7 +8,7 @@ class taskCard {
     // Indica si la tarjeta está recién creada
     this.is_empty = true;
 
-    // Info de la tarea
+    // Info de la tarea 
     this.titulo = null;
     this.desc = null;
     this.asignado = null;
@@ -30,7 +30,6 @@ class taskCard {
 
     this.element.addEventListener("dragend", () => {
       this.element.classList.remove("dragging");
-
       // actualizamos estado
       this.estado = this.element.parentNode.getAttribute("id");
     });
@@ -51,40 +50,48 @@ class taskCard {
 
     // Llenamos el html
     this.element.innerHTML = `
-            <header class="card-header">
-                <p class="card-header-title">${titulo}</p>
-                <div class="card-header-icon">
-                    <!--<span class="material-symbols-outlined">close</span>-->
-                    <button class="delete"></button>
-                </div>
-            </header>
-            <div class="card-content">
-                <div class="content">${desc}</div>
-                <div class="tags">
-                    <span class="tag is info is-light is-medium">
-                        <span class="material-symbols-outlined">schedule</span>
-                        ${fecha_limite.toString()}
-                    </span>
-                    <span class="tag is-info is-light is-medium">
-                        <span class="material-symbols-outlined">account_circle</span>
-                        ${asignado}
-                    </span>
-                    <span class="tag is-light is-medium" id="prioridad">${prioridad}</span>
-                </div>
-            </div>
-        `;
+    <header class="card-header">
+        <p class="card-header-title">${titulo}</p>
+        <div class="card-header-icon">
+            <!--<span class="material-symbols-outlined">close</span>-->
+            <button class="delete"></button>
+        </div>
+    </header>
+    <div class="card-content">
+        <div class="content">${desc}</div>
+        <div class="tags">
+            <span class="tag is info is-light is-medium">
+                <span class="material-symbols-outlined">schedule</span>
+                ${fecha_limite.toString()}
+            </span>
+            <span class="tag is-info is-light is-medium">
+                <span class="material-symbols-outlined">account_circle</span>
+                ${asignado}
+            </span>
+            <span class="tag is-light is-medium" id="prioridad">${prioridad}</span>
+        </div>
+    </div>
+`;
 
     // Coloreamos el tag con la prioridad
     switch (prioridad) {
       case "Alta":
         this.element.querySelector("#prioridad").classList.add("is-danger");
+        break;
       case "Media":
         this.element.querySelector("#prioridad").classList.add("is-warning");
+        break;
       case "Baja":
         this.element.querySelector("#prioridad").classList.add("is-success");
+        break;
     }
     // Marcamos la tarjeta como rellena
     this.is_empty = false;
+
+    this.element.querySelector(".delete").addEventListener("click", () => {
+      this.delete();
+    });
+
   }
 
   delete() {

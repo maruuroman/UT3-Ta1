@@ -11,7 +11,7 @@ class dashboardColumn {
             //"is-align-items-center"
         );
         this.element.setAttribute("id", id);
-        this.element.innerHTML = `<h2 class="subtitle is-3">${name}</h2>`;
+        this.element.innerHTML = '<h2 class="subtitle is-3">${name}</h2>';
 
         // parte donde van las tarjetas
         const inner_area = document.createElement("div");
