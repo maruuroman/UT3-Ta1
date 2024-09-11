@@ -40,6 +40,8 @@ class taskCard {
    * Método para rellenar la tarjeta. Se usa el mismo al crearla por primera vez o editarla
    */
   fill(titulo, desc, asignado, prioridad, estado, fecha_limite) {
+    //fecha_limite = fecha_limite instanceof Date ? fecha_limite.toISOString().split('T')[0] : fecha_limite;
+  
     // Llenamos los atributos
     this.titulo = titulo;
     this.desc = desc;
